@@ -127,6 +127,7 @@ public class MainTop extends JPanel implements ActionListener{
 				JOptionPane.showMessageDialog(this, "로그인동작");
 		}else if(obj.equals(bt_regist)){
 			JOptionPane.showMessageDialog(this, "회원가입동작");
+			RegistForm registform = new RegistForm();
 		}
 		
 	}

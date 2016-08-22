@@ -12,6 +12,7 @@ public class MainFrame extends JFrame{
 	//TopPlanel ฐüทร
 	MainTop mainTop;
 	MainPanel mainPanel;
+	MovieInfo movieInfo;
 	
 	public MainFrame() {
 		mainTop = new MainTop(WIDTH, 70);
@@ -19,6 +20,7 @@ public class MainFrame extends JFrame{
 		
 		add(mainTop,BorderLayout.NORTH);
 		add(mainPanel);
+		
 	
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(WIDTH, HEIGHT);

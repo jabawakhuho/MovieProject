@@ -32,10 +32,33 @@ public class MainPanel extends JPanel implements ActionListener, Runnable {
 	int count = 0; // 영화 Dis Index
 	String[] movieCount = { "국가대표2.jpg", "덕혜옹주.jpg", "라이트아웃.jpg", "밀정.jpg", "부산행.jpg", "스타트렉.jpg", "제임스본.jpg",
 			"터널.jpg" };
-
+	
 	JLabel[] naviList = new JLabel[movieCount.length]; // 영화 네비게이터 Icon(JLabel)
 	// 영화 Image의 마우스 이벤트 구현
-	MouseAdapter mouseAdapter=new MouseAdapter(){public void mouseClicked(MouseEvent e){Object obj=e.getSource();if(obj.equals(p_movie)){System.out.println("MovieInfo");return;}while(true){for(int i=0;i<naviList.length;i++){if(obj.equals(naviList[i])){count=i;p_center.remove(p_navi);createNavi(20);updateUI();return;}}}}};
+	MovieInfo movieInfo;
+	
+	MouseAdapter mouseAdapter = new MouseAdapter() {
+	
+		public void mouseClicked(MouseEvent e) {
+			Object obj = e.getSource();
+			if (obj.equals(p_movie)) {
+				System.out.println("MovieInfo");
+				movieInfo = new MovieInfo("터널");  //매개변수 DB의 영화제목 갖고와야함
+				return;
+			}
+			while (true) {
+				for (int i = 0; i < naviList.length; i++) {
+					if (obj.equals(naviList[i])) {
+						count = i;
+						p_center.remove(p_navi);
+						createNavi(20);
+						updateUI();
+						return;
+					}
+				}
+			}
+		}
+	};
 	// 이벤트 동작 시 사용(updateUI)될 쓰레드
 	Thread thread;
 	int time = 1000;// Thread.sleep의 시간을 정하는 요소
@@ -140,41 +163,44 @@ public class MainPanel extends JPanel implements ActionListener, Runnable {
 	}
 
 	// count 증가 메서드
-	public void countUp(){
-				//JOptionPane.showMessageDialog(this, count);
-				if(count < movieCount.length-1){
-					count++;
-				}else{
-					count =0;
-				}
-				time=100;
-				//System.out.println("버튼"+count);
-	}
-	//count 감소 메서드
-	public void countDown(){
-			// JOptionPane.showMessageDialog(this, "p_movie 이전");
-			if (count > 0) {
-				count--;
-			} else {
-				count = movieCount.length - 1;
-			}
-			time = 100;
-			//System.out.println("버튼" + count);
-	}
-	//예매버튼 관련 동작 메서드
-	public void reserve(){
-			JOptionPane.showMessageDialog(this, "예매과정동작");
+	public void countUp() {
+		// JOptionPane.showMessageDialog(this, count);
+		if (count < movieCount.length - 1) {
+			count++;
+		} else {
+			count = 0;
+		}
+		time = 100;
+		// System.out.println("버튼"+count);
 	}
 
+	// count 감소 메서드
+	public void countDown() {
+		// JOptionPane.showMessageDialog(this, "p_movie 이전");
+		if (count > 0) {
+			count--;
+		} else {
+			count = movieCount.length - 1;
+		}
+		time = 100;
+		// System.out.println("버튼" + count);
+	}
+
+	// 예매버튼 관련 동작 메서드
+	public void reserve() {
+		JOptionPane.showMessageDialog(this, "예매과정동작");
+	}
+
+	
 	// Action 이벤트 동작구현 메서드(bt_prev,bt_next,bt_reserve)
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object obj = e.getSource();
 		if (obj.equals(bt_prev)) {
 			countDown();
-		}else if(obj.equals(bt_next)){
+		} else if (obj.equals(bt_next)) {
 			countUp();
-		}else if(obj.equals(bt_reserve)){
+		} else if (obj.equals(bt_reserve)) {
 			reserve();
 		}
 

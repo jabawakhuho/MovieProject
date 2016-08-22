@@ -6,12 +6,13 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-public class MovieInfo extends JPanel{
+public class MovieInfo extends JDialog{
 	//전체 패널
 	JPanel p_wrapper; 
 	JScrollPane w_scroll;
@@ -35,6 +36,7 @@ public class MovieInfo extends JPanel{
 	JPanel p_com;
 	
 	public MovieInfo(String title) {
+		
 		// TODO Auto-generated constructor stub
 		// 전체Panel 생성
 		p_wrapper = new JPanel();
@@ -101,6 +103,8 @@ public class MovieInfo extends JPanel{
 		
 	
 		add(w_scroll);
+		
+		setVisible(true);
 		
 	
 	}
